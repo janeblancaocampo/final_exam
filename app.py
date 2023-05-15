@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from tensorflow.keras.models import load_model
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import plotly.graph_objs as go
 
@@ -27,6 +28,8 @@ st.write(sum_by_region)
 # Preprocess the data
 
 whole_data = data.drop('Region', axis = 1)
+scaler = MinMaxScaler(feature_range=(0, 1))
+scaled_data = scaler.fit_transform(whole_data.values)
 
 # Split the data into input and output variables
 X_test = whole_data[-12:, 1:]
