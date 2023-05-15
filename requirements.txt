@@ -4,4 +4,4 @@ pandas
 numpy
 plotly.express
 matplotlib
-scikit-learn
+
