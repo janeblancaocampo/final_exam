@@ -6,10 +6,10 @@ import numpy as np
 from datetime import datetime, timedelta
 
 # Load the trained LSTM model
-model = load_model('/content/drive/MyDrive/3RD YEAR 2ND SEM/Emerging TECH. 2/Datasets/dengue_lstm_model.h5')
+model = load_model('dengue_lstm_model.h5')
 
 # Load the dataset and preprocess it
-data = pd.read_csv('/content/drive/MyDrive/3RD YEAR 2ND SEM/Emerging TECH. 2/Datasets/denguecases.csv', index_col = 'Date', parse_dates = True)
+data = pd.read_csv('denguecases.csv', index_col = 'Date', parse_dates = True)
 whole_data = data.drop('Region', axis = 1)
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_data = scaler.fit_transform(whole_data.values)
