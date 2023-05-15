@@ -53,5 +53,6 @@ st.write('This app predicts the number of dengue cases in the Philippines for th
 start_date = st.date_input('Enter the start date for the prediction:', value=datetime(2023,1,1), min_value=datetime(2010, 1, 1), max_value=datetime(2023, 5, 15))
 n_months = 12
 if st.button('Make Prediction'):
-    predictions = make_predictions(start_date, n_months)
+    start_date_str = start_date.strftime('%Y-%m-%d')
+    predictions = make_predictions(start_date_str, n_months)
     st.write(predictions)
