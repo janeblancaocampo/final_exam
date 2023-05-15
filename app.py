@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from tensorflow.keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import plotly.graph_objs as go
 
@@ -28,17 +27,14 @@ st.write(sum_by_region)
 # Preprocess the data
 
 whole_data = data.drop('Region', axis = 1)
-scaler = MinMaxScaler(feature_range=(0, 1))
-scaled_data = scaler.fit_transform(whole_data.values)
-
+s
 
 # Split the data into input and output variables
-X_test = scaled_data[-12:, 1:]
+X_test = whole_data[-12:, 1:]
 X_test = X_test.reshape(X_test.shape[0], 1, X_test.shape[1])
 
 # Make predictions for the next 12 months
 y_pred = model.predict(X_test)
-y_pred = scaler.inverse_transform(y_pred)
 
 # Create a DataFrame of the predicted values with the dates as the index
 dates = pd.date_range(start=data.index[-1], periods=12, freq='MS')
