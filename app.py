@@ -32,7 +32,7 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_data = scaler.fit_transform(whole_data.values)
 
 # Split the data into input and output variables
-X_test = whole_data[-12:, 1:]
+X_test = whole_data[-12]
 X_test = X_test.reshape(X_test.shape[0], 1, X_test.shape[1])
 
 # Make predictions for the next 12 months
