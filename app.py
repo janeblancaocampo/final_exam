@@ -27,7 +27,6 @@ st.write(sum_by_region)
 # Preprocess the data
 
 whole_data = data.drop('Region', axis = 1)
-s
 
 # Split the data into input and output variables
 X_test = whole_data[-12:, 1:]
