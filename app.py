@@ -14,7 +14,6 @@ whole_data = data.drop('Region', axis = 1)
 scaler = MinMaxScaler(feature_range=(0, 1))
 scaled_data = scaler.fit_transform(whole_data.values)
 
-# Define a function to make predictions
 def make_predictions(start_date, n_months):
     # Convert the start_date to datetime format
     start_date = datetime.strptime(start_date, '%Y-%m-%d')
@@ -25,10 +24,13 @@ def make_predictions(start_date, n_months):
     # Create a DataFrame to store the predictions
     predictions = pd.DataFrame({'Date': date_list})
     
+    # Make a copy of the scaled data
+    scaled_data_copy = scaled_data.copy()
+    
     # Predict the number of dengue cases for each month
     for i in range(n_months):
         # Get the scaled input data for the last 12 months
-        x = scaled_data[-12:]
+        x = scaled_data_copy[-12:]
         # Reshape the input data into (samples, time steps, features)
         x = np.reshape(x, (1, x.shape[0], x.shape[1]))
         # Make the prediction for the next month
@@ -38,9 +40,9 @@ def make_predictions(start_date, n_months):
         # Add the prediction to the DataFrame
         predictions.loc[i, 'Dengue_Cases'] = y_pred
         # Add the next month to the input data for the next prediction
-        next_month = scaled_data[-1, 1:]
+        next_month = scaled_data_copy[-1, 1:]
         next_month = np.append(next_month, y_pred)
-        scaled_data = np.vstack((scaled_data, next_month))
+        scaled_data_copy = np.vstack((scaled_data_copy, next_month))
     
     # Set the Date column as the index
     predictions.set_index('Date', inplace=True)
