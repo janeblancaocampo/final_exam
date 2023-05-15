@@ -7,10 +7,10 @@ from sklearn.preprocessing import MinMaxScaler
 from datetime import datetime, timedelta
 
 # Load the model
-model = load_model('/content/drive/MyDrive/3RD YEAR 2ND SEM/Emerging TECH. 2/Datasets/dengue_lstm_model.h5')
+model = load_model('dengue_lstm_model.h5')
 
 # Load the dataset
-data = pd.read_csv('/content/drive/MyDrive/3RD YEAR 2ND SEM/Emerging TECH. 2/Datasets/denguecases.csv', index_col='Date', parse_dates=True)
+data = pd.read_csv('denguecases.csv', index_col='Date', parse_dates=True)
 
 # Compute the sum of dengue cases per region
 sum_by_region = data.groupby('Region')['Dengue_Cases'].sum()
