@@ -4,4 +4,4 @@ pandas
 numpy
 plotly.express
 matplotlib
-sklearn.preprocessing import MinMaxScaler
+scikit-learn
